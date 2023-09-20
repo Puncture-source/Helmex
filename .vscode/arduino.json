@@ -1,0 +1,6 @@
+{
+    "board": "arduino:samd:nano_33_iot",
+    "sketch": "Arduino_Peripheral_Code.ino",
+    "port": "COM8",
+    "programmer": "AVR ISP"
+}
