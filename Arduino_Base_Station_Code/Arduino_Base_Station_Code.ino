@@ -15,7 +15,7 @@ byte temp;
 // more the readings will be smoothed, but the slower the output will respond to
 // the input. Using a constant rather than a normal variable lets us use this
 // value to determine the size of the readings array.
-const int numReadings = 10;
+const int numReadings = 100;
 
 int readings[numReadings];  // the readings from the analog input
 int readIndex = 0;          // the index of the current reading
@@ -150,12 +150,12 @@ void controlPeripheral(BLEDevice peripheral) {
   */
 
   do {
-    Serial.print("*reading value from LEDOut *");
-    delay(1000);
+    //Serial.print("*reading value from LEDOut *");
+    //delay(1000);
     
     //LEDOut.readValue(temp);
     //Serial.println(temp);
-    Serial.println(peripheral.rssi());
+    //Serial.println(peripheral.rssi());
     //digitalWrite(LED_BUILTIN, temp);
     
 
@@ -168,30 +168,26 @@ void controlPeripheral(BLEDevice peripheral) {
     
     
     //-------------[Smoothing]----------
-    // subtract the last reading:
-  total = total - readings[readIndex];
-  // read from the sensor:
-  readings[readIndex] = peripheral.rssi();
-  // add the reading to the total:
-  total = total + readings[readIndex];
-  // advance to the next position in the array:
-  readIndex = readIndex + 1;
+    for (int i = 0; i <100; i++){
+      // read from the sensor:
+      readings[i] = peripheral.rssi();
 
-  // if we're at the end of the array...
-  if (readIndex >= numReadings) {
-    // ...wrap around to the beginning:
-    readIndex = 0;
-  }
+      // add to the running total:
+      total += readings[i];
+    }
 
-  // calculate the average:
-  average = total / numReadings;
-  // send it to the computer as ASCII digits
-  Serial.println(average);
-  delay(1);  // delay in between reads for stability
+    // calculate the average:
+    average = total / 100;
+    // send it to the computer as ASCII digits
+    Serial.println(average);
+    total = 0;
+  }while(1!=1);
+
+  //delay(10);  // delay in between reads for stability
   //---------------------------------------------------------
 
 
-  }while(1!=1);
+
   
   }
   
