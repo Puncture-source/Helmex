@@ -1,6 +1,6 @@
 /*
   Helmex
-  peripheral
+  Headset Code - Peripheral
 */
 
 #include <Arduino_LSM6DS3.h>

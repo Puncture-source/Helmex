@@ -133,7 +133,7 @@ void controlPeripheral(BLEDevice peripheral) {
 
   do {
     Serial.print("*reading value from LEDOut *");
-
+    delay(1000);
     
     //LEDOut.readValue(temp);
     //Serial.println(temp);
