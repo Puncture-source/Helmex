@@ -15,7 +15,7 @@ byte temp;
 // more the readings will be smoothed, but the slower the output will respond to
 // the input. Using a constant rather than a normal variable lets us use this
 // value to determine the size of the readings array.
-const int numReadings = 100;
+const int numReadings = 10;
 
 int readings[numReadings];  // the readings from the analog input
 int readIndex = 0;          // the index of the current reading
@@ -150,37 +150,25 @@ void controlPeripheral(BLEDevice peripheral) {
   */
 
   do {
-    //Serial.print("*reading value from LEDOut *");
-    //delay(1000);
-    
-    //LEDOut.readValue(temp);
-    //Serial.println(temp);
-    //Serial.println(peripheral.rssi());
-    //digitalWrite(LED_BUILTIN, temp);
-    
-
-    /*
-    if (LEDOut.written()) {
-      temp = LEDOut.value();
-      digitalWrite(LED_BUILTIN, temp);
-    }
-    */
-    
-    
+        
     //-------------[Smoothing]----------
-    for (int i = 0; i <100; i++){
-      // read from the sensor:
-      readings[i] = peripheral.rssi();
 
-      // add to the running total:
-      total += readings[i];
-    }
-
+     // total = total -readings[readIndex];
+     // readings[readIndex] = peripheral.rssi();
+     // total = total +readings[readIndex];
+     // readIndex = readIndex + 1;
+    // if we're at the end of the array...
+  if (readIndex >= numReadings) {
+    // ...wrap around to the beginning:
+    readIndex = 0;
+  }
     // calculate the average:
-    average = total / 100;
+  //  average = total / numReadings;
     // send it to the computer as ASCII digits
-    Serial.println(average);
+   //Serial.println(average);
     total = 0;
+    delay(300);
+    Serial.println(peripheral.rssi());
   }while(1!=1);
 
   //delay(10);  // delay in between reads for stability
