@@ -1,10 +1,9 @@
 /*
-  test5_3b
-  central
+  Base Station Code
 */
 
 #include <ArduinoBLE.h>
-
+  
 const char* deviceServiceUuid = "11111111-aaaa-bbbb-cccc-0123456789ab";
 const char* deviceServiceCharacteristicUuid = "22222222-aaaa-bbbb-cccc-0123456789ab";
 const char* deviceServiceCharacteristicUuid2 = "22222222-aaaa-bbbb-cccc-0123456789ac";
