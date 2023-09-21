@@ -59,7 +59,7 @@ void connectToPeripheral(){
   
   Serial.println("- Discovering peripheral device...");
   digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
+  //delay(1000);
   
 
   do
@@ -168,7 +168,7 @@ void controlPeripheral(BLEDevice peripheral) {
    //Serial.println(average);
     total = 0;
     delay(300);
-    Serial.println(peripheral.rssi());
+   // Serial.println(peripheral.rssi());
   }while(1!=1);
 
   //delay(10);  // delay in between reads for stability
